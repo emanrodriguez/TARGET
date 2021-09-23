@@ -10,7 +10,7 @@
 
 
 ## How to use:
-1. **If first time using the program, run the newUser.py file**
+1. **If first time using the program, run the newUser.py file(Else go to Step 2)**
    1. Log into your Target account. (You will have 20 seconds.)
    1. Program will terminate.
    1. Exit the window
@@ -23,6 +23,7 @@
 1. **Run the officalTarget.py file**
    1. Enter the link you wish to use.
    1. Enter the pin associated with the main card on file.
+   2. <img src="https://i.imgur.com/iZZm9E5.gif">
    
 
 
