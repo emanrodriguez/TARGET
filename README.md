@@ -1,9 +1,9 @@
 # TARGET
 
 ## What does it do ?
-Using a combination of technologies(Selenium,ChromeDriver, and Tkinter, and Json) we get the Target Bot. What this bot allows you to do is input a user generated link and the program will continuously run throughout the night/day until the item that you want is back in stock on the Target website. At the same time it utilizes json in order to save the user generated cookies from first time log-in in order to load the identity every time the main file is being run.
+Using a combination of technologies(Selenium,ChromeDriver, and Tkinter, and Json) we get the Target Bot. What this bot allows you to do is input a user generated link and the program will continuously run throughout the night/day until the item that you want is back in stock on the Target website. Once in stock, it will send a text via SMS by using the Twilio API. At the same time it utilizes json in order to save the user generated cookies from first time log-in in order to load the identity every time the main file is being run.
 
-## Why on earth would I want this?
+## Usage?
 1. Well I'm glad you asked, if you've been in the market for a new console such as the PlayStation 5 or Xbox Series X/S this program will surely help you with getting the console.
 2.It goes even farther than consoles, there's also sport cards drops and even pokemon sometimes!
 
