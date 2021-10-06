@@ -4,7 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import userInput
+import os
+from twilio.rest import Client
 
+account_sid = os.environ['REPLACE WITH UR ACCT SID']
+auth_token = os.environ['REPLACE WITH UR AUTH TOKEN']
+client = Client(account_sid, auth_token)
 
 class TargetBot:
     def __init__(self):
@@ -13,7 +18,7 @@ class TargetBot:
         # option.add_experimental_option('useAutomationExtension', False)
         option.add_argument("window-size=1280,800")
         # option.add_argument('--disable-blink-features=AutomationControlled')
-        self.driver = webdriver.Chrome("C:/Users/Emmanuel/Documents/chromedriver.exe", options=option)
+        self.driver = webdriver.Chrome("C:/Users/Emmanuel/PycharmProjects/TARGETEST/chromedriver.exe", options=option)
         self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         self.action = webdriver.ActionChains(self.driver)
 
@@ -27,7 +32,7 @@ class TargetBot:
     def linkPage(self, url):
         self.driver.get(url)
 
-    def checkStock(self):
+    def checkStock(self,link):
         refresh = True
         while refresh:
             try:
@@ -38,6 +43,12 @@ class TargetBot:
                     print("Still sold out")
                     refresh = True
                 else:
+                    message = client.messages.create(
+                        body=f'The item you have requested is now in stock. Here is the link {link} ',
+                        from_='###REPLACE WITH YOUR TWILIO NUMBER ###',
+                        to='### REPLACE WITH END-USER PHONE NUMBER ###'
+                    )
+                    print(message.sid)
                     refresh = False
                     print("In stock")
             except:
@@ -84,10 +95,6 @@ class TargetBot:
                 pinSection.send_keys(pin)
                 print("Pin successful")
                 tryAgain = False
-                # try:
-                #     self.confirmPin()
-                # except:
-                #     pass
             except:
                 pass
 
@@ -123,15 +130,10 @@ class TargetBot:
 if __name__ == '__main__':
     userLink,userPin = userInput.userSubmission()
     print(userLink)
-    # tempPin = str(input("Enter your pin number that is the default card on your Target account: "))
-    # userSure = str(input(f"Are you sure that {tempPin} is the correct pin? "))
-    # while 'y' not in userSure.lower():
-    #     tempPin = int(input("Enter your pin number that is the default card on your Target account: "))
-    #     userSure = str(input(f"Are you sure this is the correct pin? "))
     a = TargetBot()
     a.openPage('https://target.com/')
     a.linkPage(userLink)
-    a.checkStock()
+    a.checkStock(userLink)
     a.placeOrder()
     a.enterPin(userPin)
     a.confirmPin()
