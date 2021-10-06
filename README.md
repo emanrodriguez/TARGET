@@ -42,8 +42,3 @@ Using a combination of technologies(Selenium,ChromeDriver, and Tkinter, and Json
    1. **EXAMPLE:**
 <img src="https://i.imgur.com/iZZm9E5.gif">
    
-
-
-1. ######
-   1. ######
-
